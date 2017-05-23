@@ -2,10 +2,15 @@
   // 1) What is the purpose of the 'this keyword'?
 
       //Answer
+      //to access the context of a function
 
   // 2) What are the four rules that govern what the 'this keyword' is bound to and describe each?
 
       //Answer
+      //Explicit
+      //implicit
+      //default(window)
+      //new (constructor function)
 
   // 3) What is the difference between call and apply?
 
@@ -14,7 +19,8 @@
   // 4) What does .bind do?
 
       //Answer
-
+      //binds a function with an object and saves that particular function with that particular object
+      //under a variable name
 
 //Next Problem
 
@@ -24,15 +30,29 @@
   //getUsername --> which is a function that returns the current object's username property. *Don't use 'user' instead use the 'this' keyword*
 
     //Code Here
-
+var user = {
+  username: "hharrison",
+  email: "hharrison@yahoo.com",
+  getUsername: function(){
+    return this.username;
+  }
+}
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
-
+user.getUsername();
 
 //Next Problem
 
 
 // Write a constructor function, including method definitions, which will make the following function invocations function properly.
-
+function Car(make, model, year){
+   this.make = make;
+   this.model = model;
+   this.model = year;
+   this.miles = 0;
+   this.moveCar = function(){
+     return this.miles += 10;
+   }
+}
   //Function Invocations Here
 
 var prius = new Car('Toyota', 'Prius', 2011);
@@ -55,7 +75,8 @@ var getYear = function(){
 
 //Note(no tests)
   //Code Here
-
+getYear.call(prius);
+getYear.call(mustang);
 
 //New Problem
 
@@ -69,11 +90,12 @@ var getMyUsername = function() {
  return this.username;
 };
 
-var userName = getMyUsername(); //Fix this
+var userName = getMyUsername.call(myUser); //Fix this
 
 //Above you're given an object, and  a function. What will the getMyUsername function return?
 //Note(no tests)
   //Answer Here
+  Windown
 
 //In the example above, what is the 'this keyword' bound to when getMyUsername runs?
 
@@ -81,4 +103,3 @@ var userName = getMyUsername(); //Fix this
 
 
 //Fix the getMyUsername invocation (stored in the userName variable, at the bottom of the above code) so that userName will be equal to 'iliketurtles'.
-
